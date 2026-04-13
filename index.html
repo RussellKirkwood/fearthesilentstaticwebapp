@@ -48,14 +48,14 @@
     }
 
     /* ── NAVIGATION ── */
-    nav {
+    #nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.2rem 4rem;
       background: linear-gradient(to bottom, rgba(10,7,4,0.97) 0%, rgba(10,7,4,0) 100%);
       transition: background 0.4s;
     }
-    nav.scrolled {
+    #nav.scrolled {
       background: rgba(10,7,4,0.97);
       border-bottom: 1px solid rgba(201,153,60,0.2);
     }
@@ -677,7 +677,7 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
+      #nav { padding: 1rem 1.5rem; }
       .nav-links { display: none; }
       .world-grid { grid-template-columns: 1fr; }
       .world-illustration { display: none; }
@@ -1134,11 +1134,11 @@
 <!-- ── FOOTER ── -->
 <footer>
   <span class="footer-brand">Fear The Silent</span>
-  <nav class="footer-links">
+  <div class="footer-links">
     <a href="#">Privacy</a>
     <a href="#">Contact</a>
     <a href="#">Press Kit</a>
-  </nav>
+  </div>
   <span class="footer-copy">© 2025 Fear The Silent. All rights reserved.</span>
 </footer>
 
