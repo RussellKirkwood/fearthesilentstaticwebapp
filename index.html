@@ -634,6 +634,24 @@
     }
 
     .email-btn:hover { background: var(--parchment); }
+    /* ── CONTACT EMAIL ── */
+    .contact-email {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(201,153,60,0.4);
+      padding-bottom: 0.2rem;
+      margin-top: 0.5rem;
+      transition: color 0.25s, border-color 0.25s;
+    }
+    .contact-email:hover {
+      color: var(--parchment);
+      border-color: rgba(240,232,208,0.6);
+    }
+
 
     /* ── FOOTER ── */
     footer {
@@ -1119,15 +1137,10 @@
 <!-- ── JOIN ── -->
 <section id="join">
   <div class="join-inner">
-    <span class="section-label reveal" style="display:block; text-align:center;">Stay Informed</span>
+    <span class="section-label reveal" style="display:block; text-align:center;">Get In Touch</span>
     <h2 class="section-title reveal" style="text-align:center;">The Covenant Is Watching.<br>So Should You.</h2>
-    <p class="reveal">Be among the first to know when new chapters, trailers, and release dates are announced. No noise — only signal.</p>
-
-    <div class="email-form reveal">
-      <input type="email" class="email-input" placeholder="your.name@domain.com" id="emailInput"/>
-      <button class="email-btn" onclick="handleSubscribe()">Join</button>
-    </div>
-    <p id="sub-message" style="margin-top:1rem; font-size:0.85rem; color:var(--gold); opacity:0; transition:opacity 0.4s; min-height:1.4rem;"></p>
+    <p class="reveal">For enquiries about the book, film, press, or anything else — reach out directly.</p>
+    <a href="mailto:sherpa@fearthesilent.com" class="contact-email reveal">sherpa@fearthesilent.com</a>
   </div>
 </section>
 
@@ -1137,9 +1150,8 @@
   <div class="footer-links">
     <a href="#">Privacy</a>
     <a href="#">Contact</a>
-    <a href="#">Press Kit</a>
   </div>
-  <span class="footer-copy">© 2025 Fear The Silent. All rights reserved.</span>
+  <span class="footer-copy" id="footer-year">© Fear The Silent. All rights reserved.</span>
 </footer>
 
 <!-- ── VIDEO MODAL ── -->
@@ -1230,6 +1242,9 @@
     input.value = '';
     // Wire this to your actual backend / mailing list
   }
+
+  // Dynamic copyright year
+  document.getElementById("footer-year").textContent = "© " + new Date().getFullYear() + " Fear The Silent. All rights reserved.";
 </script>
 
 </body>
