@@ -1185,21 +1185,7 @@
     alert('Video coming soon: ' + title);
     return;
   }
-
-  // Detect iOS — open YouTube directly instead of modal
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-
-  if (isIOS) {
-    window.open('https://www.youtube.com/watch?v=' + ytId, '_blank');
-    return;
-  }
-
-  const modal = document.getElementById('videoModal');
-  document.getElementById('modalIframe').src =
-    'https://www.youtube.com/embed/' + ytId + '?autoplay=1&playsinline=1';
-  modal.classList.add('open');
-  document.body.style.overflow = 'hidden';
+  window.open('https://www.youtube.com/watch?v=' + ytId, '_blank');
 }
   
   function closeVideoModal() {
