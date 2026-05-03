@@ -1134,12 +1134,13 @@
 <div class="modal-backdrop" id="videoModal" onclick="closeModal(event)">
   <div class="modal-video" id="modalContent">
     <button class="modal-close" onclick="closeVideoModal()">✕ Close</button>
-   <iframe id="modalIframe" src="" 
-  frameborder="0"
-  referrerpolicy="strict-origin-when-cross-origin"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  allowfullscreen>
-</iframe>
+    <iframe id="modalIframe" src=""
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+      playsinline
+      webkit-playsinline>
+    </iframe>
   </div>
 </div>
 
@@ -1178,19 +1179,29 @@
 
   // Video modal
   function openVideo(el, ytId) {
-    if (!ytId) {
-      // Placeholder: no video yet
-      const card = el.closest('.video-card');
-      const title = card.querySelector('.video-title').textContent;
-      alert('Video coming soon: ' + title + '\n\nAdd a YouTube video ID to this card to enable playback.');
-      return;
-    }
-    const modal = document.getElementById('videoModal');    
-    document.getElementById('modalIframe').src = 'https://www.youtube.com/embed/' + ytId + '?autoplay=1&origin=' + window.location.origin;
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
+  if (!ytId) {
+    const card = el.closest('.video-card');
+    const title = card.querySelector('.video-title').textContent;
+    alert('Video coming soon: ' + title);
+    return;
   }
 
+  // Detect iOS — open YouTube directly instead of modal
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+  if (isIOS) {
+    window.open('https://www.youtube.com/watch?v=' + ytId, '_blank');
+    return;
+  }
+
+  const modal = document.getElementById('videoModal');
+  document.getElementById('modalIframe').src =
+    'https://www.youtube.com/embed/' + ytId + '?autoplay=1&playsinline=1';
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+  
   function closeVideoModal() {
     const modal = document.getElementById('videoModal');
     modal.classList.remove('open');
